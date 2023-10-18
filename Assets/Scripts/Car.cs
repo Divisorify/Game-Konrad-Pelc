@@ -47,6 +47,7 @@ public class Car : MonoBehaviour
     }
 
     public Car(){ }
+
     // Start is called before the first frame update
     void Start()
     {
