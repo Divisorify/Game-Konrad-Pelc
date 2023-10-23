@@ -32,6 +32,7 @@ public class Car : MonoBehaviour
     private bool isGrounded = true;
 
     private string GROUND_TAG = "Ground";
+    private string CRASH_TAG = "Crash";
 
     public Car(int health, int speed) {
         Health = health;
@@ -106,6 +107,17 @@ public class Car : MonoBehaviour
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
             isGrounded = true;
-        }    
+        }
+
+        if (collision.gameObject.CompareTag(CRASH_TAG)) {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(CRASH_TAG)) { 
+            Destroy (gameObject);
+        }
     }
 }
