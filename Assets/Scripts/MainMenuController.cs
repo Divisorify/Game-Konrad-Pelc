@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     public void PlayGame() {
-        int selectedCharacter = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+        int selectedCharacter = 
+            int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
         GameManager.instance.CharIndex = selectedCharacter;
 

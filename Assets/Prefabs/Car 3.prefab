@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.91, y: -2.3, z: 0}
-  m_LocalScale: {x: 0.47851, y: 0.47851, z: 0.47851}
+  m_LocalScale: {x: 0.21851, y: 0.21851, z: 0.47851}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 3685699447509056901}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 54c392b545cec3b408c39e26308d40c7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8e3574a2c31c810408cb505e28a0f619, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,7 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c831e28dbc83f64eb9dedb418b36b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  fuel: 0
   speed: 0
+  fuelTexture: {fileID: 2800000, guid: a85535d79b8f241458e6cb2d97ec08f8, type: 3}
   driveForce: 10
   jumpForce: 11

@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1, 5));
+            yield return new WaitForSeconds(Random.Range(4, 7));
 
             randomIndex = Random.Range(0, objectReference.Length);
             randomSide = Random.Range(0, 2);
@@ -37,6 +37,7 @@ public class Spawner : MonoBehaviour
             if (randomSide == 0)
             {
                 spawnedObject.transform.position = leftPos.position;
+                if (spawnedObject.GetComponent<Electricity>() != null) { }
                 spawnedObject.GetComponent<Electricity>().speed = Random.Range(4, 10);
             }
             else

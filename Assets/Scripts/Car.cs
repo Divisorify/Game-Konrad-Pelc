@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class Car : MonoBehaviour
 {
     [SerializeField]
-    private int health;
+    private int fuel;
 
     [SerializeField]
-    private int speed; 
+    private int speed;
 
-    public global::System.Int32 Health { get => health; set => health = value; }
+    public Texture2D fuelTexture;
+
+    private float barWidth;
+    private float barHeight;
+
+    private float maxFuel = 100;
+    private float currentFuel = 100;
+
+    public global::System.Int32 Fuel { get => fuel; set => fuel = value; }
     public global::System.Int32 Speed { get => speed; set => speed = value; }
 
     [SerializeField]
     private float driveForce = 10f;
 
     [SerializeField]
-    private float jumpForce = 11f;
+    private float jumpForce = 15f;
     
     private float movementX;
 
@@ -34,8 +43,8 @@ public class Car : MonoBehaviour
     private string GROUND_TAG = "Ground";
     private string CRASH_TAG = "Crash";
 
-    public Car(int health, int speed) {
-        Health = health;
+    public Car(int fuel, int speed) {
+        Fuel = fuel;
         Speed = speed;
     }
 
@@ -44,7 +53,9 @@ public class Car : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        myBody.AddForce(new Vector2(2,2)); 
+        myBody.AddForce(new Vector2(2,2));
+        barHeight = Screen.height * 0.02f;
+        barWidth = barHeight * 10.0f;
     }
 
     public Car(){ }
@@ -68,14 +79,30 @@ public class Car : MonoBehaviour
     private void FixedUpdate()
     {
         CarJump();
+
+
+        Timer myTimer = new Timer();
+        myTimer.Elapsed += new ElapsedEventHandler(burnFuel);
+        myTimer.Interval = 1000; // 1000 ms is one second
+        myTimer.Start();
     }
 
     void CarDriveKeyboard() {
         movementX = Input.GetAxisRaw("Horizontal");
-
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * driveForce;
+    }
 
-
+    void burnFuel(object source, ElapsedEventArgs e)
+    {
+        if (currentFuel > 0)
+        {
+            currentFuel -= maxFuel * 0.0001f;
+            Mathf.Clamp(currentFuel, 0, maxFuel);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void AnimateCar() {
@@ -117,7 +144,16 @@ public class Car : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(CRASH_TAG)) { 
-            Destroy (gameObject);
+            Destroy(gameObject);
         }
+    }
+
+    void OnGUI()
+    {
+        GUI.DrawTexture(new Rect(Screen.width - barWidth - 10,
+                                 Screen.height - barHeight - 1000,
+                                 currentFuel * barWidth / maxFuel,
+                                 barHeight),
+                        fuelTexture);
     }
 }

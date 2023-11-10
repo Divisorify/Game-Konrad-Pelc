@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2952240421028988758}
   - component: {fileID: 6240725643275884787}
   - component: {fileID: 4389870663907000431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Electricity
   m_TagString: Electricity
   m_Icon: {fileID: 0}

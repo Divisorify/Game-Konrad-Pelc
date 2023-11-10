@@ -38,7 +38,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         car = new Car(20,30);
 
-        Debug.Log("Car health: " + car.Health + " Speed: " + car.Speed);
+        Debug.Log("Car fuel: " + car.Fuel + " Speed: " + car.Speed);
     }
 
     // Update is called once per frame
