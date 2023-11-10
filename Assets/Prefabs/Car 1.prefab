@@ -197,4 +197,4 @@ MonoBehaviour:
   speed: 0
   fuelTexture: {fileID: 2800000, guid: a85535d79b8f241458e6cb2d97ec08f8, type: 3}
   driveForce: 10
-  jumpForce: 11
+  jumpForce: 15

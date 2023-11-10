@@ -41,6 +41,7 @@ public class Car : MonoBehaviour
     private bool isGrounded = true;
 
     private string GROUND_TAG = "Ground";
+    private string ELECTRICITY_TAG = "Electricity";
     private string CRASH_TAG = "Crash";
 
     public Car(int fuel, int speed) {
@@ -64,16 +65,20 @@ public class Car : MonoBehaviour
     void Start()
     {
         
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        CarDriveKeyboard();
-        AnimateCar();
+        if(currentFuel > 0.2)
+        {
+            CarDriveKeyboard();
+            AnimateCar();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -94,14 +99,15 @@ public class Car : MonoBehaviour
 
     void burnFuel(object source, ElapsedEventArgs e)
     {
+        if (currentFuel < 0.2)
+        {
+            Destroy(gameObject);
+
+        }
         if (currentFuel > 0)
         {
             currentFuel -= maxFuel * 0.0001f;
             Mathf.Clamp(currentFuel, 0, maxFuel);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -135,16 +141,19 @@ public class Car : MonoBehaviour
         {
             isGrounded = true;
         }
-
-        if (collision.gameObject.CompareTag(CRASH_TAG)) {
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(CRASH_TAG)) { 
             Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag(ELECTRICITY_TAG))
+        {
+            currentFuel += maxFuel * 0.25f;
+            Mathf.Clamp(currentFuel, 0, maxFuel); 
+            Destroy(gameObject.GetComponent<Electricity>());
         }
     }
 

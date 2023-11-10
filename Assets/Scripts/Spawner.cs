@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
     private int randomIndex;
 
     private int randomSide;
+    private string ELECTRICITY_TAG = "Electricity";
+    private string PLAYER_TAG = "Player";
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(4, 7));
+            yield return new WaitForSeconds(Random.Range(2, 3));
 
             randomIndex = Random.Range(0, objectReference.Length);
             randomSide = Random.Range(0, 2);
@@ -38,13 +40,21 @@ public class Spawner : MonoBehaviour
             {
                 spawnedObject.transform.position = leftPos.position;
                 if (spawnedObject.GetComponent<Electricity>() != null) { }
-                spawnedObject.GetComponent<Electricity>().speed = Random.Range(4, 10);
+                spawnedObject.GetComponent<Electricity>().speed = Random.Range(3, 7);
             }
             else
             {
                 spawnedObject.transform.position = rightPos.position;
-                spawnedObject.GetComponent<Electricity>().speed = -Random.Range(4, 10);
+                spawnedObject.GetComponent<Electricity>().speed = -Random.Range(3, 7);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(PLAYER_TAG))
+        {
+                   
         }
     }
 }

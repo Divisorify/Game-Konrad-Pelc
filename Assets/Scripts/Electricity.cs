@@ -8,6 +8,7 @@ public class Electricity : MonoBehaviour
     public float speed;
 
     private Rigidbody2D myBody;
+    private string PLAYER_TAG = "Player";
 
     void Awake()
     {
@@ -29,5 +30,14 @@ public class Electricity : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+    
+        if (collision.gameObject.CompareTag(PLAYER_TAG))
+        {
+            Destroy(gameObject);
+        }
     }
 }
