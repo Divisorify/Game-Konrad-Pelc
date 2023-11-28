@@ -44,6 +44,8 @@ public class Car : MonoBehaviour
     private string ELECTRICITY_TAG = "Electricity";
     private string CRASH_TAG = "Crash";
 
+    public GameplayUIController gameplay;
+
     public Car(int fuel, int speed) {
         Fuel = fuel;
         Speed = speed;
@@ -64,7 +66,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameplay = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameplayUIController>();
     }
 
     // Update is called once per frame
@@ -77,6 +79,7 @@ public class Car : MonoBehaviour
         }
         else
         {
+            gameplay.gameOver(); 
             Destroy(gameObject);
         }
     }
@@ -84,8 +87,6 @@ public class Car : MonoBehaviour
     private void FixedUpdate()
     {
         CarJump();
-
-
         Timer myTimer = new Timer();
         myTimer.Elapsed += new ElapsedEventHandler(burnFuel);
         myTimer.Interval = 1000; // 1000 ms is one second
@@ -99,14 +100,9 @@ public class Car : MonoBehaviour
 
     void burnFuel(object source, ElapsedEventArgs e)
     {
-        if (currentFuel < 0.2)
-        {
-            Destroy(gameObject);
-
-        }
         if (currentFuel > 0)
         {
-            currentFuel -= maxFuel * 0.0001f;
+            currentFuel -= maxFuel * 0.001f;
             Mathf.Clamp(currentFuel, 0, maxFuel);
         }
     }
@@ -125,7 +121,6 @@ public class Car : MonoBehaviour
         else {
             anim.SetBool(DRIVE_ANIMATION, false);
         }
-        
     }
 
     void CarJump() {
@@ -147,13 +142,13 @@ public class Car : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(CRASH_TAG)) { 
             Destroy(gameObject);
+            gameplay.gameOver();
         }
 
         if (collision.gameObject.CompareTag(ELECTRICITY_TAG))
         {
             currentFuel += maxFuel * 0.25f;
             Mathf.Clamp(currentFuel, 0, maxFuel); 
-            Destroy(gameObject.GetComponent<Electricity>());
         }
     }
 
