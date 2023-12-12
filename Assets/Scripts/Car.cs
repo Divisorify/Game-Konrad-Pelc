@@ -102,8 +102,8 @@ public class Car : MonoBehaviour
     {
         if (currentFuel > 0)
         {
-            currentFuel -= maxFuel * 0.001f;
-            Mathf.Clamp(currentFuel, 0, maxFuel);
+            currentFuel -= maxFuel * 0.00001f;
+            currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
         }
     }
 
@@ -148,7 +148,7 @@ public class Car : MonoBehaviour
         if (collision.gameObject.CompareTag(ELECTRICITY_TAG))
         {
             currentFuel += maxFuel * 0.25f;
-            Mathf.Clamp(currentFuel, 0, maxFuel); 
+            currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel); 
         }
     }
 

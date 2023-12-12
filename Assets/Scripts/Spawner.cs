@@ -39,20 +39,25 @@ public class Spawner : MonoBehaviour
             if (randomSide == 0)
             {
                 spawnedObject.transform.position = leftPos.position;
-                if (spawnedObject.GetComponent<Electricity>() != null) { }
-                spawnedObject.GetComponent<Electricity>().speed = Random.Range(3, 7);
+                if (spawnedObject.GetComponent<Electricity>() != null)
+                {
+                    spawnedObject.GetComponent<Electricity>().speed = Random.Range(3, 7);
+                }
             }
             else
             {
                 spawnedObject.transform.position = rightPos.position;
-                spawnedObject.GetComponent<Electricity>().speed = -Random.Range(3, 7);
+                if (spawnedObject.GetComponent<Electricity>() != null)
+                {
+                    spawnedObject.GetComponent<Electricity>().speed = -Random.Range(3, 7);
+                }
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(PLAYER_TAG))
+        if (collision.gameObject.CompareTag(PLAYER_TAG) || collision.gameObject.CompareTag(ELECTRICITY_TAG))
         {
                    
         }
