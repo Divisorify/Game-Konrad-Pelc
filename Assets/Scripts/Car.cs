@@ -43,6 +43,7 @@ public class Car : MonoBehaviour
     private string GROUND_TAG = "Ground";
     private string ELECTRICITY_TAG = "Electricity";
     private string CRASH_TAG = "Crash";
+    private string FINISH_TAG = "Finish";
 
     public GameplayUIController gameplay;
 
@@ -149,6 +150,11 @@ public class Car : MonoBehaviour
         {
             currentFuel += maxFuel * 0.25f;
             currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel); 
+        }
+
+        if (collision.gameObject.CompareTag(FINISH_TAG))
+        {
+            gameplay.finish();
         }
     }
 

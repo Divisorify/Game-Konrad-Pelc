@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameplayUIController : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject finishScreen;
 
     public void RestartGame() {
         SceneManager.LoadScene("Gameplay");
@@ -37,5 +38,10 @@ public class GameplayUIController : MonoBehaviour
     public void gameOver()
     {
          gameOverScreen.SetActive(true);
+    }
+
+    public void finish()
+    {
+        finishScreen.SetActive(true);
     }
 }

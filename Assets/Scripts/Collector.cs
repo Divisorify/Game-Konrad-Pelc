@@ -6,7 +6,7 @@ public class Collector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Crash") || collision.CompareTag("Electricity") || collision.CompareTag("Player")) { 
+        if (collision.CompareTag("Crash") || collision.CompareTag("Electricity")) { 
              Destroy(collision.gameObject);
         }
     }
