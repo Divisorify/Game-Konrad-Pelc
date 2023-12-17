@@ -88,10 +88,6 @@ public class Car : MonoBehaviour
     private void FixedUpdate()
     {
         CarJump();
-        Timer myTimer = new Timer();
-        myTimer.Elapsed += new ElapsedEventHandler(burnFuel);
-        myTimer.Interval = 1000; // 1000 ms is one second
-        myTimer.Start();
     }
 
     void CarDriveKeyboard() {
@@ -141,18 +137,19 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(CRASH_TAG)) { 
+        GameObject gameObject = collision.gameObject;
+        if (gameObject.CompareTag(CRASH_TAG)) { 
             Destroy(gameObject);
             gameplay.gameOver();
         }
 
-        if (collision.gameObject.CompareTag(ELECTRICITY_TAG))
+        if (gameObject.CompareTag(ELECTRICITY_TAG))
         {
             currentFuel += maxFuel * 0.25f;
             currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel); 
         }
 
-        if (collision.gameObject.CompareTag(FINISH_TAG))
+        if (gameObject.CompareTag(FINISH_TAG))
         {
             gameplay.finish();
         }
