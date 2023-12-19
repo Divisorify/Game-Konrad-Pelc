@@ -37,7 +37,10 @@ public class GameplayUIController : MonoBehaviour
 
     public void gameOver()
     {
-         gameOverScreen.SetActive(true);
+        if (!finishScreen.active) {
+            gameOverScreen.SetActive(true);
+        } 
+        
     }
 
     public void finish()

@@ -6298,7 +6298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36221b874df8ff140954fb4e925434a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -17.75
+  minX: -15
   maxX: 156
 --- !u!1 &592160841
 GameObject:
@@ -6604,6 +6604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 107028701}
+  finishScreen: {fileID: 0}
 --- !u!4 &687973821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2712389061111892534, guid: 71359bf7774406d4f9207c95cb7038d3, type: 3}
@@ -7877,7 +7878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3685699447509056901, guid: 0a037c0ea96ebb44ea48b510b2e766c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156034159472249340, guid: 0a037c0ea96ebb44ea48b510b2e766c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8102,11 +8103,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2721659931587198225, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2721659931587198225, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
       propertyPath: m_SortingLayerID
-      value: 1028235563
+      value: 1444481465
       objectReference: {fileID: 0}
     - target: {fileID: 4263302197064063096, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
       propertyPath: m_Name

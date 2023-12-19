@@ -1968,6 +1968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 107028701}
+  finishScreen: {fileID: 0}
 --- !u!1 &676216913
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,7 +5140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3685699447509056901, guid: 0a037c0ea96ebb44ea48b510b2e766c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156034159472249340, guid: 0a037c0ea96ebb44ea48b510b2e766c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5768,6 +5769,14 @@ PrefabInstance:
     - target: {fileID: 2464131025858492507, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721659931587198225, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721659931587198225, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1444481465
       objectReference: {fileID: 0}
     - target: {fileID: 4263302197064063096, guid: 876c925f5877ceb48ab95f093ef59949, type: 3}
       propertyPath: m_Name

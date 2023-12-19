@@ -26,7 +26,7 @@ public class Car : MonoBehaviour
     private float driveForce = 10f;
 
     [SerializeField]
-    private float jumpForce = 15f;
+    private float jumpForce = 10f;
     
     private float movementX;
 
@@ -73,7 +73,8 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentFuel > 0.2)
+        CarJump();
+        if (currentFuel > 0.2)
         {
             CarDriveKeyboard();
             AnimateCar();
@@ -88,6 +89,7 @@ public class Car : MonoBehaviour
     private void FixedUpdate()
     {
         CarJump();
+        burnFuel();
     }
 
     void CarDriveKeyboard() {
@@ -95,11 +97,14 @@ public class Car : MonoBehaviour
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * driveForce;
     }
 
-    void burnFuel(object source, ElapsedEventArgs e)
+    void burnFuel()
     {
         if (currentFuel > 0)
         {
-            currentFuel -= maxFuel * 0.00001f;
+            currentFuel -= maxFuel * 0.00065f;
+            // 0.0005f is 40 sec
+            // 0.00065f is 30 sec
+            // 0.0007f is 28 sec
             currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
         }
     }
@@ -137,19 +142,18 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject gameObject = collision.gameObject;
-        if (gameObject.CompareTag(CRASH_TAG)) { 
+        if (collision.gameObject.CompareTag(CRASH_TAG)) { 
             Destroy(gameObject);
             gameplay.gameOver();
         }
 
-        if (gameObject.CompareTag(ELECTRICITY_TAG))
+        if (collision.gameObject.CompareTag(ELECTRICITY_TAG))
         {
             currentFuel += maxFuel * 0.25f;
             currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel); 
         }
 
-        if (gameObject.CompareTag(FINISH_TAG))
+        if (collision.gameObject.CompareTag(FINISH_TAG))
         {
             gameplay.finish();
         }
