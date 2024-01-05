@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(4, 6));
+            yield return new WaitForSeconds(Random.Range(3, 4));
 
             randomIndex = Random.Range(0, objectReference.Length);
             randomSide = Random.Range(0, 2);
